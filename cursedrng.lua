@@ -18,7 +18,7 @@ function m.cursed_rng(value2, value1)
       local key =  k
       local val =  v
       m.rng_seed_table[k] = nil
-      m.rng_seed_table[key:sub(2,-1) .. key:sub(1,1)] = val
+      m.rng_seed_table[key:sub(2,-1) .. key:sub(1,1)] = val -- You must rotate the keys to break Lua and LuaJIT caching pairs() results.
     end
   end
 
