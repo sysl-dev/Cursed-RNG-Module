@@ -1,6 +1,9 @@
 # Cursed-RNG-Module
 A cursed RNG Module that generates randomness from Pairs() not being deterministic.
 
+# Should I use this?
+No, use very much at your own risk. This is just a terrible idea I had to work out once it hit me.
+
 # Using
 ```lua
 local cured_rng = require("cursedrng")
