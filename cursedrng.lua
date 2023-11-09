@@ -18,13 +18,27 @@ function m.cursed_rng(value2, value1)
       local key =  k
       local val =  v
       m.rng_seed_table[k] = nil
-      m.rng_seed_table[key:sub(2,-1) .. key:sub(1,1)] = val -- You must rotate the keys to break Lua and LuaJIT caching pairs() results.
+      m.rng_seed_table[key:sub(2,-1) .. key:sub(1,1)] = val
     end
   end
 
-  if not value1 then return tonumber(astring,2)/255 
+  local astring2 = ""; local count = 0
+  for k,v in pairs(m.rng_seed_table) do 
+  count = count + 1
+    if count < 9 then
+      astring2 = astring2 .. v
+    end
+    if count > -1 then
+      local key =  k
+      local val =  v
+      m.rng_seed_table[k] = nil
+      m.rng_seed_table[key:sub(2,-1) .. key:sub(1,1)] = val
+    end
+  end
+
+  if not value1 then return tonumber(astring .. astring2,2)/(255*255) 
   else
-  return math.floor((tonumber(astring,2)/255) * (value1 - value2 + 1)) + value2
+  return math.floor((tonumber(astring .. astring2,2)/(255*255)) * (value1 - value2 + 1)) + value2
   end
   end
 
